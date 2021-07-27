@@ -1,28 +1,24 @@
 const express=require('express')
-
 const routes=express.Router()
+const path=require('path')
+const ejs=require('ejs')
+var fs = require('fs');
+var templateString = null;
 
 routes.get('/',(req,res,next)=>
 {
-    res.sendFile(path.join(appRoot, 'html/index.html'));
+  res.render(appRoot+'/html/index.ejs',{'username':'sathish'}) 
 })
 
 routes.get('/signin',(req,res,next)=>
 {
-    res.sendFile(path.join(appRoot, 'html/signup.html'));
+   res.render(appRoot+'/html/signup.ejs',{'username':'sathish'}) 
 })
 
 
 routes.get('/dashboard',(req,res,next)=>
 {
-    res.render(appRoot+'/html/dashboard.ejs',{'username':'sathish'})
-   /* res.render(appRoot+'/html/dashboard.ejs',{'username':'sathish'}, function (err, html1) 
-    {
-        res.render(appRoot+'/html/index.ejs', function (err, html2) {
-          res.send(html1+html2)
-        })
-      })
-    */
+    res.render(appRoot+'/html/dashboard.ejs',{'username':'sathish'})   
 })
 
 module.exports=routes;
