@@ -1,0 +1,48 @@
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<header class="header container container-pall">
+  <nav class="nav flex flex-jc-sp flex-ai-c">
+    <a class="header__logo" href="#">TaskM</a>
+    <div class="toggle-menu flex hide-for-desktop" tabindex="0" role="button">
+      <div class="toggle-menu__dots">
+        <span class="toggle-menu__dot"></span>
+        <span class="toggle-menu__dot"></span>
+        <span class="toggle-menu__dot"></span>
+        <span class="toggle-menu__dot"></span>
+      </div>
+      <span class="toggle-menu__text">Menu</span>
+    </div>
+    <ul class="menu flex">
+      <li class="menu__item"><a href="#" class="menu__link">Features</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">Contact-us</a></li>
+      <li class="menu__item"><a href="#" class="menu__link">portfolio</a></li>
+      <li class="menu__item"><a href="/signin" class="menu__link menu__link--primary">Sign In</a></li>
+    </ul>
+  </nav>
+</header>
+<!-- End Header -->
+
+<!-- Hero Section -->
+<section class="hero container container-pall">
+  <div class="hero__image">
+    <img 
+         src="https://a.top4top.io/p_1996ri7a41.png" 
+         alt="Hero Image" 
+         class="hero__illustration-image" 
+         draggable="false">
+  </div>
+
+  <div class="hero__text">
+    <h1 class="hero__heading">Get your work done. Manage your Team & Task</h1>
+    <p class="hero__description">
+      Turn your team on to productivity 
+      with perfect task management and Reporting
+    </p>
+    <a class="hero__cta hero__cta--primary" onclick="loadsignup()"> Get Started Now !</a>
+  </div>
+</section>
+<script>
+    function loadsignup()
+    {
+        window.location.replace("signup.html");
+    }
+</script>

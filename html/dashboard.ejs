@@ -1,0 +1,27 @@
+
+<link rel="stylesheet" href="css/switch.css">
+<body>
+    <%- include( '../public/nav/nav-main.ejs'); %>
+    <h2> Welcome <%=username%> </h2>
+    <div class="toggle-switch">
+        Enable Night Mode:  
+        <label class="switch">(
+          <input type="checkbox" id="toggle-switch"onclick="toggle()">
+          <span class="slider round"></span>
+        </label>
+        </div>  
+</body>
+<script>
+    function toggle()
+    {
+        if (document.getElementById('toggle-switch').checked) {
+            document.body.style.background = "black";
+            document.body.style.color="white";
+        } else {
+            document.body.style.background = "white";
+            document.body.style.color="black";
+         
+        }
+    }
+
+</script>
