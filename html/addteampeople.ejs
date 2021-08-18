@@ -1,0 +1,77 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="/css/addteam.css" <div class="container">
+<div class="row">
+    <div class="col s8 offset-s2">
+        <div id="tcontent" class="m2">
+
+            <div id="addheader" class=" green darken-1">
+                Add new Team mate
+            </div>
+
+            <form id="add-team" class="col s10 offset-s1">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="email">Email</label>
+                        <input id="username" name="username" type="email">
+                    </div>
+
+                </div>
+
+                <div class="row" id="loaders">
+                    <img id="spinner" src="https://www.dropbox.com/s/wfsji06m6jfe0yl/spinner.gif?raw=1" width="150">
+                </div>
+
+                <div class="row">
+                    <div class="col s6">
+                        <button id="send-team" class="btn waves-effect waves-light  green darken-2" type="submit" >Add
+                        </button>
+                    </div>
+                    <div class="col s6">
+                        <button id="resetBtn" class="btn waves-effect waves-light light-blue darken-2"
+                            type="submit">Reset
+
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+        $("#add-team").on("submit", function (event) {
+            event.preventDefault();
+            var formValues = $(this).serialize();
+            $('#send-team').prop('disabled', true);
+            $("#send-team").html("Processing...");
+            $.post("/rest/<%=userid%>/addteam", formValues, function (result,error) {
+                if (result.status == 1) {
+                    $("#send-team").html("added");
+                    if(result.data)
+                    {
+                    $("#viewteams").append("<li><a href='#'><img src='/"+result.data._id+"/photos/view' onerror=\"this.onerror=null;this.src='https://i.ibb.co/yNGW4gg/avatar.png';\"/><span class='member-title'>"+result.data.name+"</span><span class='member-title-hover'>"+result.data.phone+"</span></a></li>")
+                    }
+                }
+                else if (result.status == 9) {
+                    $("#send-team").html("exists");
+                }
+                else if (result.status == 10) {
+                    $("#send-team").html("No such user");
+                }
+                else if (result.status == 7) {
+                    $("#send-team").html("You are already in");
+                }
+                else if (result.status == 0) {
+                    $("#send-team").html("failed");
+                }
+                else {
+                    $("#send-team").html("Try Again");
+                    $('#send-team').prop('disabled', false);
+                }
+            });
+            setTimeout(()=>{  $('#send-team').prop('disabled', false);$("#send-team").html("Add"); }, 3000);
+        });
+</script>

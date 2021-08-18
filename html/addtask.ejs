@@ -1,0 +1,97 @@
+
+        <div class="row">
+                <div id="content" class="m2">
+                    <header id="header" class=" pink darken-1">
+                        Add new Task
+                    </header>
+
+                    <form id="add-task"  class="col s10 offset-s1">
+                        <div class="row">
+                                <div class="input-field col s12">
+                                        <p>Dropdown with search box<p>
+                                        <select name="empid" id="empid">
+                                            <% for(var i=0; i < data.length; i++) { %>
+                                          <option value="<%= data[i]._id %>"><%= data[i].username %></option>
+                                
+                                          <% } %>
+                                      </select>
+                             
+                                </div>
+                                <div class="input-field col s12">
+                                    <label for="subject">Task:</label>
+                                    <input id="task"  name="task" type="text">
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="input-field col s12">
+                                    <label for="message">Message: </label>
+                                    <textarea id="message" name="message" class="materialize-textarea"></textarea>
+                                </div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="date">end date </label>
+                                <input type="date" id="date" name="date" class="materialize-textarea"></textarea>
+                            </div>
+                        <div class="row" id="loaders">
+                                <img id="spinner" src="https://www.dropbox.com/s/wfsji06m6jfe0yl/spinner.gif?raw=1" width="150">
+                        </div>
+                            
+                        <div class="row">
+                                <div class="col s6">
+                                    <button id="send-task" class="btn waves-effect waves-light  pink darken-2" type="submit" name="action">Send
+                                            <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                                <div class="col s6">
+                                    <button id="resetBtn" class="btn waves-effect waves-light light-blue darken-2" type="submit">Reset
+                                            <i class="material-icons right">delete</i>
+                                    </button>
+                                </div>
+                        </div>
+                    </form> 
+                    
+                </div> 
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link rel="stylesheet" href="css/addtask.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </body>
+</html>
+<script src="/js/addtask.js"></script>
+<script>
+       $("#add-task").on("submit", function (event) {
+            event.preventDefault();
+            var formValues = $(this).serialize();
+            $('#send-task').prop('disabled', true);
+            $("#send-task").html("Processing...");
+            var empid=$("#empid").val()
+            $.post("/rest/"+empid+"/addtask", formValues, function (result,error) {
+                if (result.status == 1) {
+                    $("#send-task").html("added");
+                    if(result.data)
+                    {
+                    $("#viewteams").append("<li><a href='#'><img src='/"+result.data._id+"/photos/view' onerror=\"this.onerror=null;this.src='https://i.ibb.co/yNGW4gg/avatar.png';\"/><span class='member-title'>"+result.data.name+"</span><span class='member-title-hover'>"+result.data.phone+"</span></a></li>")
+                    }
+                }
+               
+                else if (result.status == 0) {
+                    $("#send-task").html("failed");
+                }
+                else {
+                    $("#send-task").html("Try Again");
+                    $('#send-task').prop('disabled', false);
+                }
+            });
+            setTimeout(()=>{  $('#send-task').prop('disabled', false);$("#send-task").html("Add"); }, 3000);
+        });
+</script>

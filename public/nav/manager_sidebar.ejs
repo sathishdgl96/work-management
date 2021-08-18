@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="css/manager.css">
+    <script src="/js/sidebar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<input type="checkbox" id="sidebar-toggle">
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h3 class="brand">
+           
+        </h3>
+        <label for="sidebar-toggle" class="ti-menu-alt"></label>
+    </div>
+
+    <div class="sidebar-menu">
+        <ul>
+            <li>
+                <a href="/manage" onclick="loadPage(this)">
+                    <span class="ti-home"></span>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="/teams" onclick="loadPage(this)" class="link">
+                    <span class="ti-face-smile"></span>
+                    <span>Team</span>
+                </a>
+            </li>
+            <li>
+                <a href="/addtask" onclick="loadPage(this)" class="link">
+                    <span class="ti-agenda"></span>
+                    <span>Tasks</span>
+                </a>
+            </li>
+            <li>
+                <a href="/leave-approve" onclick="loadPage(this)" class="link">
+                    <span class="ti-clipboard"></span>
+                    <span>Leaves</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="ti-folder"></span>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="ti-time"></span>
+                    <span>Timesheet</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="ti-book"></span>
+                    <span>Contacts</span>
+                </a>
+            </li>
+            <li>
+                <a href="/onboarding" onclick="loadPage(this)" class="link">
+                    <span class="ti-settings"></span>
+                    <span>Account</span>
+                </a>
+            </li>
+            <li>
+                <a href="/logout" onclick="loadPage(this) " class="link">
+                    <span class="ti-settings"></span>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="main-content">
+    <header>
+        <div class="search-wrapper">
+            <span class="ti-search"></span>
+            <input type="search" placeholder="Search">
+        </div>
+
+        <div class="social-icons">
+            <span class="ti-bell"></span>
+            <span class="ti-comment"></span>
+            <div></div>
+        </div>
+        </header>
+        <main>
+        <script>
+            function loadPage(event) {
+                var link = $(event).attr('href')
+                if(link=='/logout')
+                {
+                    $.get("/logout",(data)=>{
+                        if(data.data==1)
+                        {
+                            console.log("Logged out")
+                            window.location.assign("/login") 
+                        }
+
+                    });
+
+                }
+                else
+                {
+                $.get(link, function (data) {
+                    $('#maincontent').html(data);
+                });
+            }
+            }
+            $('.link').click(function () {
+                return false
+            });
+        </script>

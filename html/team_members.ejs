@@ -1,0 +1,34 @@
+<%- include( './addteampeople.ejs' ); %>
+  <ul class="list-team-members" id="viewteams">
+    <% for(var i=0; i < data.length; i++) { %>
+      <li id="<%= data[i]._id %>">
+        <a href="#">
+          <img src="/<%= data[i]._id%>/photos/view"
+            onerror="this.onerror=null;this.src='https://i.ibb.co/yNGW4gg/avatar.png';" />
+          <span class="member-title">
+            <%= data[i].name %>
+          </span>
+          <span class="member-title-hover">
+            <%= data[i].phone %>
+          </span>
+          <br><br><span class="member-title-hover" style="background-color: red;"
+            onclick="deletemember('<%= data[i]._id %>')">Remove</span>
+        </a>
+      </li>
+      <% } %>
+
+  </ul>
+  </div>
+  <link rel="stylesheet" href="/css/teams.css" type="text/css">
+
+  <script>
+    function deletemember(id) {
+      link="/rest/"+id+"/delete"
+      $.get(link, function (data) {
+        if(data.status==1)
+        {
+          $('#'+id).remove();
+        }
+      });
+    }
+  </script>

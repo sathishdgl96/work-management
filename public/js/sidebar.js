@@ -56,9 +56,30 @@ function logoutPage()
         {
           var apikey=c.substring(nameEQ.length,c.length);
           document.cookie = "apikey ="+apikey+"; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-           $.post("/logout?apikey="+apikey)
-           
+          $.get("/logout",(data)=>{
+            if(data.data==1)
+            {
+                console.log("Logged out")
+                window.location.assign("/login") 
+            }
+
+        });
+
         }
-            window.location.replace("/login");
+        
      }
+}
+
+function dismiss(e)
+{
+    var link=$("#dismissnotify").attr('href');
+    event.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: link,
+            success: function(data){
+                $("#notifications").html("");
+            }
+        });
+
 }

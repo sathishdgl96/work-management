@@ -1,0 +1,27 @@
+/* Global */
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+#quizConfig {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#first_name {
+  margin-bottom: 20px;
+}
+
+#submitBtn {
+  margin: 0;
+  padding: 0;
+}
+
+#result {
+  margin-top: 100px;
+}

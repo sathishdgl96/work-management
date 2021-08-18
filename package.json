@@ -1,19 +1,36 @@
 {
   "name": "work-management",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "connect-mongo": "^4.4.1",
+    "connect-redis": "^6.0.0",
+    "cookie-session": "^1.4.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^5.13.7",
+    "random": "^3.0.6",
+    "redis": "^3.1.2",
+    "uuid-apikey": "^1.5.3"
   },
   "devDependencies": {},
   "scripts": {
-   "test":"node app.js",
-   "dev":"nodemon"
+    "test": "node app.js",
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sathishdgl96/work-management.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sathishdgl96/work-management/issues"
+  },
+  "homepage": "https://github.com/sathishdgl96/work-management#readme",
+  "description": ""
 }
