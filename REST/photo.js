@@ -4,9 +4,9 @@ const routes = express.Router()
 const photo = require('../models/photo')
 
 routes.post('/:id/photos/add', function (req, res, next) {
-    console.log(req.files.image.data);
-    console.log(req.files.image.mimetype);
-    console.log(req.files.image.name);
+    //console.log(req.files.image.data);
+    //console.log(req.files.image.mimetype);
+    //console.log(req.files.image.name);
     var a = new photo();
     a.img.data = req.files.image.data
     a.img.contentType = req.files.image.mimetype;

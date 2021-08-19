@@ -6,12 +6,12 @@ setInterval(function()
       datatype:"json",
       success:function(data)
       {
-          $('#date-time').html(data.time)
+          $('#date-time').html(new Date().toLocaleTimeString())
           if(data.message)
           {
-             console.log(data.message) 
+            // console.log(data.message) 
              var message="<p>"+data.message+"<a id='dismissnotify' href='dismissnotify?id="+data.notifyid+ "' onclick='dismiss(this)'>  dismiss</a></p>"
-             console.log(message)
+            // console.log(message)
              $("#notifications").html(message);
           }
           else
@@ -44,7 +44,7 @@ function getDate()
    var MM = tdate.getMonth(); //yields month
    var yyyy = tdate.getFullYear(); //yields year
    var currentDate= dd + "/" +( MM+1)+"/"+yyyy;
-   console.log(currentDate)
+   //console.log(currentDate)
    $('#today').html(currentDate)
 }
 $(function() {
@@ -79,7 +79,7 @@ function getActiveExams()
       url:"/activeExams?apikey="+apikey(),
       success:function(data)
       {
-      console.log(data[0])
+      //console.log(data[0])
       var i=0;
       $('#subject'+i).html(data[0].subject)
         $('#qtitle'+i).html(data[0].qTitle)
@@ -93,3 +93,15 @@ function getActiveExams()
       }
        });
 }
+function loadTask(id)
+{
+  $.ajax({
+    type: "GET",
+    url: "/rest/viewtask/"+id,
+    data: { },
+    success: function(data){
+        $('#maincontent').html(data);
+    }
+});
+}
+

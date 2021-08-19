@@ -7,7 +7,8 @@ var Schema = new mongoose.Schema({
     task:String,
 	message:String,
     date:Date,
-    submission: { data: Buffer, contentType: String },
+    status:Number,
+    submission: {name:String, data: Buffer, contentType: String },
     submissiondate:Date,
     submissionmessage:String
 

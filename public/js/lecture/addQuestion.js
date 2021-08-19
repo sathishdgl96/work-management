@@ -19,7 +19,7 @@ $.ajax({
   success: function(data){
   number=number+1;
      //$("#").text(data);
-     console.log(data)
+     //console.log(data)
      alert("added questions"+number)
      
   }

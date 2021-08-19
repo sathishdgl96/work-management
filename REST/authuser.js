@@ -30,7 +30,7 @@ routes.post('/rest/loginrequest', urlencodedParser, function (req, res) {
     {
     authUser.findOne({ username: req.body.username }, (err, obj) => {
         if (obj != null) {
-            console.log("username",obj.username)
+            //console.log("username",obj.username)
             if (obj.password == req.body.password) {
                 req.session.userid=obj.id
                 req.session.role=obj.role

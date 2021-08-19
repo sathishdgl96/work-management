@@ -34,7 +34,7 @@ function addStudent()
 var sname = $("#sname").val();
 var data = $("#test").serializeArray();
 data.push({sname:sname, testid:testid()});
-console.log(data);
+//console.log(data);
 
 $.ajax({
   type: "POST",
@@ -42,7 +42,7 @@ $.ajax({
   cache: false,
   success: function(data){
      //$("#").text(data);
-     console.log(data)
+     //console.log(data)
   }
 });
 }

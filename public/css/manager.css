@@ -248,6 +248,10 @@ tbody tr:nth-child(even) {
     background: #DEF7EC;
     color: var(--main-color);
 }
+.badge.danger {
+    background: red;
+    color: white;
+}
 
 .badge.warning {
     background: #F0F6B2;

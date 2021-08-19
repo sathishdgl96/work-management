@@ -44,27 +44,6 @@ routes.post('/requestlogin',(req,res,next)=>
    res.render(appRoot+'/html/login.ejs',{'username':'sathish'}) 
 })
 
-routes.get('/dashboard',(req,res,next)=>
-{  
-    if(!req.session.userid)
-    {
-        res.redirect('/login');
-    }
-    else
-    {
-    authUser.findOne({ _id: req.session.userid }, (err, obj) => 
-    {
-        if(obj.role==2)
-        {
-            res.redirect('/manage');
-        }
-        else
-        {
-        res.render(appRoot+'/html/dashboard.ejs',{'username':'sathish'}) 
-        }
-       })
-    }
-})
 
 routes.get('/jobs',(req,res,next)=>
 {
@@ -126,7 +105,7 @@ console.log(notificationid)
 notify.deleteOne({_id:notificationid},(err,data)=>{
     if(data.deletedCount>=1)
     {
-        console.log(data)
+    console.log("deleted",data)
     res.send({status:"1"})
     }
     else

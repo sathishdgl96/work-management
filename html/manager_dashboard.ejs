@@ -21,67 +21,15 @@
                                     <tr>
                                         <td>  <%= data[i].task%></td>
                                         <td>  <%= data[i].date.toLocaleDateString() %></td>
-                                        <td><%= names[i].name %></td>
+                                        <td><%= names[i][0].name %></td>
                                         <td class="td-team">
-                                            <div class="img-1" style="background-image: url('/<%= names[i]._id%>/photos/view')"/></div>
+                                            <div class="img-1" style="background-image: url('/<%= names[i][0]._id%>/photos/view')"/></div>
                                         </td>
                                         <td>
-                                            <span class="badge success">Success</span>
+                                            <span <%if (data[i].status==0) { %>  class= "badge-danger"> <% } %>  <%if (data[i].status==1) { %>  class= "badge-warning"> <% } %>   <%if (data[i].status==2) { %>  class= "badge-success"> <% } %>      <%if (data[i].status==0) { %> Pending <% } %>  <%if (data[i].status==1) { %> In review <% } %>  <%if (data[i].status==2) { %> <a class="submissions" href="/rest/submissions/<%=data[i]._id%>" onclick="viewSubmission()">view Submission</a> <% } %> </div>
                                         </td>
                                     </tr>
                                     <% } %>
-                                    <tr>
-                                        <td>Logo Design</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge warning">Processing</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Server setup</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge success">Success</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Front-end Design</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge warning">Processing</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Web Development</td>
-                                        <td>15 Aug, 2020</td>
-                                        <td>22 Aug, 2020</td>
-                                        <td class="td-team">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
-                                        <td>
-                                            <span class="badge success">Success</span>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -100,34 +48,34 @@
                                 <span class="ti-calendar"></span>
                                 <div>
                                     <h5>16</h5>
-                                    <small>Number of leave</small>
+                                    <small>Leave Request</small>
                                 </div>
                             </div>
                             <div class="summary-single">
                                 <span class="ti-face-smile"></span>
                                 <div>
                                     <h5>12</h5>
-                                    <small>Profile update request</small>
+                                    <small>Pending submisssions</small>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="bday-card">
+                        <% if(locals.notifications){ %>
+                        <div class="bday-card" id="notify-tray">
                             <div class="bday-flex">
-                                <div class="bday-img"></div>
+                                <div class="bday-img" style="background-image: url('https://www.pikpng.com/pngl/b/199-1993279_updates-notification-icon-png-vector-clipart.png');"></div>
                                 <div class="bday-info">
-                                    <h5>Dwayne F. Sanders</h5>
-                                    <small>Birthday Today</small>
+                                    <h5>Updates</h5>
+                                    <small><%=notifications.message%></small>
                                 </div>
                             </div>
                             
                             <div class="text-center">
-                                <button>
-                                    <span class="ti-gift"></span>
-                                    Wish him
+                                <button>                   
+                                 <a href="/dismissnotify?id=<%=notifications._id%>" style="color:white" id="dismissnotify" onclick="dismiss(this)"> Dismiss</a>
                                 </button>
                             </div>
                         </div>
+                        <% } %>
                     </div>
                 </div>
             </section>
@@ -138,3 +86,35 @@
 
 </body>
 </html>
+
+<script>
+function dismiss(e)
+{
+    var link=$("#dismissnotify").attr('href');
+    event.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: link,
+            success: function(data){
+                //console.log("data:",data)
+                $("#notify-tray").html("");
+            }
+        });
+
+}
+
+function viewSubmission(e)
+{
+    var link=$(".submissions").attr('href');
+    $("main").html("<p> Loading...</p>")
+    event.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: link,
+            success: function(data){
+               $("main").html(data)
+            }
+        });
+
+}
+</script>

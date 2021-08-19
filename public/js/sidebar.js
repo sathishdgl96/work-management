@@ -59,7 +59,7 @@ function logoutPage()
           $.get("/logout",(data)=>{
             if(data.data==1)
             {
-                console.log("Logged out")
+                //console.log("Logged out")
                 window.location.assign("/login") 
             }
 

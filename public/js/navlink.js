@@ -1,5 +1,4 @@
 $('#userlink').click(function(e){
-console.log("triggerred");
     e.preventDefault();
     $.ajax({
         type: "GET",
