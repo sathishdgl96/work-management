@@ -5,6 +5,7 @@ const express = require('express')
 const teams = require("../models/team");
 const user = require("../models/authUser")
 const task = require("../models/task")
+const jobpool=require("../models/jobpool")
 const profile = require("../models/profilemodel")
 var random = require('random')
 const notify = require("../models/notify");
@@ -38,6 +39,28 @@ routes.post('/rest/:id/addtask', urlencodedParser, (req, res, next) => {
     console.log(req.body)
     var empid = req.params.id;
     var employerid = req.session.userid;
+    if(empid==9)
+    {
+    var newjobpool=new jobpool()
+    newjobpool._id=random.int(200,45443543);
+    newjobpool.employerid=employerid;
+    newjobpool.status=0;
+    newjobpool.task = req.body.task
+    newjobpool.message = req.body.message
+    newjobpool.date = req.body.date
+    newjobpool.save((err,data)=>{
+        if(err)
+        {
+            console.log(err)
+        }
+        else
+        {
+            res.send({status:1})
+        }
+    })
+    }
+    else
+    {
     var newtask = new task()
     newtask._id = random.int(200, 624233232);
     newtask.employeeid = empid
@@ -67,6 +90,7 @@ routes.post('/rest/:id/addtask', urlencodedParser, (req, res, next) => {
             res.send({ status: '1' })
         }
     })
+}
 })
 
 
@@ -211,5 +235,6 @@ routes.get('/rest/submissions/:id',(req,res,next)=>
     })
  
 })
+
 
 module.exports = routes

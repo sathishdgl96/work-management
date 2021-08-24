@@ -42,6 +42,18 @@ routes.get('/REST/profile/:id/view/name', (req, res, next) => {
 
 });
 
+routes.get('/REST/profile/view/all', (req, res, next) => {
+    var id = req.params.id;
+    profile.find({}, (err, obj) => {
+    if(obj!=null)
+    {
+        res.send({data:obj})
+        console.log(obj.name)
+    }
+    });
+
+});
+
 routes.post('/REST/profile/:id/update', urlencodedParser,(req, res, next) => {
     var id = req.params.id;
     var newprofile = new profile({ _id: id, name: req.query.name, phone: req.query.phone, institution: req.query.institution });

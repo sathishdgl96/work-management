@@ -31,3 +31,16 @@ $('#leavelink').click(function(e){
         });
     });
     
+    $('#jobpoollink').click(function(e){
+        console.log("triggerred");
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: "/empjobpool",
+                data: { },
+                success: function(data){
+                    $('#maincontent').html(data);
+                }
+            });
+        });
+        

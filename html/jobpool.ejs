@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/css/jobpool.css" type="text/css">
+<script src="/js/jobpool.js"></script>
+<% if(!locals.jobpool) {%>
+<h1>Getting Started</h1>
+<p> Let employees do what they like ! </p>
+<button onclick="createJobPool(this)">Let me in !</a>
+<% } %>
+
+<% if(locals.jobpool) {%>
+    <h3>Job pool</h3>
+    <% if(locals.role==0){%>
+    <p>
+ Welcome to the shared job pool !. Let your employees have freedom</p><% } %>
+<table>
+    <thead>
+      <tr>
+        <th>Task Id</th>
+        <th>Task Name</th>
+        <th>Job Description</th>
+        <th>Deadline</th>
+         <th>Quick Actions </th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0; i < jobpool.length; i++) { %>
+      <tr>
+        <td data-column="First Name"><%=jobpool[i]._id%></td>
+        <td data-column="Last Name"><%=jobpool[i].task%></td>
+        <td data-column="Job Title"><%=jobpool[i].message%></td>
+        <td data-column="Twitter"><%=jobpool[i].date.toLocaleDateString()%></td>
+        <% if(locals.role==1){%><td><a href="/pickjob/<%=jobpool[i]._id%>">Pick it</a></td><% } %>
+        <% if(locals.role==0){%><td><a href="/deletejob/<%=jobpool[i]._id%>">Delete</a></td><% } %>
+      </tr>
+      
+<% } %>  
+    </tbody>
+  </table> 
+
+
+<% } %>  
+

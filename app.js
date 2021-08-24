@@ -5,6 +5,7 @@ const routes = require('./routes/getRoutes');
 const events=require('./routes/event');
 const restroutes=require('./REST/restRoutes');
 const photoroutes=require('./REST/photo');
+const jobpoolroutes=require('./REST/jobpool');
 const mongo=require('./mongoConfig')
 const authuser=require('./REST/authuser')
 const teams=require('./REST/team')
@@ -26,6 +27,7 @@ app.use(routes)
 app.use(restroutes)
 app.use(events)
 app.use(authuser)
+app.use(jobpoolroutes)
 app.use(profileRoutes)
 app.use(photoroutes)
 app.use(teams)
