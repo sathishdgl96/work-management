@@ -7,7 +7,7 @@ Web Application built using NodeJs, Express and, MongoDB that let you **focus mo
 3. Minimum 1GB RAM & 200MB HDD
 ```
 ### Features
-```
+
 1. Assign a task to a particular employee or let your employee choose from the job pool
 2. Logically Separation of organization. You can create any number of organization, teams, and employees
 3. Inbuilt **Leave Management**
@@ -15,7 +15,7 @@ Web Application built using NodeJs, Express and, MongoDB that let you **focus mo
 5. Create/ Schedule Events 
 6. **Inbuilt Address Book** - Find people inside your organization
 7. Enhanced Reporting - Leave Remaining, On-Time Delivery, Overall Performance of an employee
-```
+
 ### Feature Enhancement
 ```
 1. Integrating Chat, Calls, and Meeting
@@ -25,10 +25,10 @@ Web Application built using NodeJs, Express and, MongoDB that let you **focus mo
 5. Inbuilt Test Platform - To upskill your employee
 ```
 ### Installation
-```
+
 1. Clone the repository or download and extract the zip file
 2. Run Command **npm install**
 3. Open MongoConfig and change the database URL 
 4. All Set!. Ready to Go...
-```
+
 Suitable for any team size and organization
