@@ -1,5 +1,5 @@
 # Team Work Management
-Web Application built using NodeJs, Express and, MongoDB that let you **focus more on work** rather than spending more time on managing a team.
+**Web Application built** using NodeJs, Express and, MongoDB that let you **focus more on work** rather than spending more time on managing a team.
 ### Requirements
 ```
 1. NodeJs
@@ -31,4 +31,4 @@ Web Application built using NodeJs, Express and, MongoDB that let you **focus mo
 3. Open MongoConfig and change the database URL 
 4. All Set!. Ready to Go...
 
-Suitable for any team size and organization
+**Suitable for any team size and organization**
