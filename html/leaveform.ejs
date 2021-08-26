@@ -1,50 +1,152 @@
-<link rel="stylesheet" href="css/apply-leave.css" type="text/css">
-<section class="main-container">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-6">
-  
-          <div class="leave-form">
-  
-            <header class="form-header">
-              <h2>Apply for leave</h2>
-            </header>
-            <div class="emp-details">
-              <ul class="key-value">
-                <li>
-                  <label>Emp ID</label>
-                  <span class="value">12547</span>
-                </li>
-                <li>
-                  <label>Email ID</label>
-                  <span class="value">Naveenb@thoughtworks.com</span>
-                </li>
-              </ul>
+<form target="_self"
+      id="bootstrapForm"
+      method="POST" >
+    <fieldset>
+        <h2>Leave Request Form<br><small></small></h2>
+    </fieldset>
+    <fieldset>
+        <legend for="919003939">Type of time-off requested</legend>
+        <div class="form-group">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="vacationtype" value="Vacation" required>
+                    Vacation
+                </label>
             </div>
-            
-            <div class="form-container">
-              
-  <form action="">
-    
-    <div class="form-group">
-      <label for="formGroupExampleInput">Type of leave</label>
-     <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
-    </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput2">Start Date</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-    </div>
-    
-              </form>            
-              
+            <div class="radio">
+                <label>
+                    <input type="radio" name="vacationtype" value="Sick Leave" required>
+                    Sick Leave
+                </label>
             </div>
-  
-          </div>
-  
+            <div class="radio">
+                <label>
+                    <input type="radio" name="vacationtype" value="Maternity/Paternity" required>
+                    Maternity/Paternity
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="vacationtype" value="Sick" required>
+                    Sick
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="vacationtype" value="Bereavement" required>
+                    Bereavement
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="vacationtype" value="Jury Duty" required>
+                    Jury Duty
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="vacationtype" value="Time off without pay" required>
+                    Time off without pay
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="vacationtype" value="Other" required>
+                    Other
+                </label>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </fieldset>
+    
+    <fieldset>
+        <legend for="1833993761">Start Date</legend>
+        <div class="form-group">
+            <input type="date" id="1989254035_date" name="startdate" placeholder="8/23/2019" class="form-control" required>
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend for="861643251">End Date</legend>
+        <div class="form-group">
+            <input type="date" id="1403025287_date" name="enddate"placeholder="8/23/2019" class="form-control" required>
+        </div>
+    </fieldset>
+    
+    <fieldset>
+        <legend for="388489461">Time-off comments</legend>
+        <div class="form-group">
+            <textarea id="1357270616" name="comments" class="form-control" required></textarea>
+        </div>
+    </fieldset>
+    <input type="hidden" name="fvv" value="1">
+    <input type="hidden" name="fbzx" value="5356028641311999799">
+    
+    <input type="hidden" name="pageHistory" value="0">
+
+    <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
+<script>
+$('#bootstrapForm').submit(function (event) {
+    event.preventDefault()
+    var extraData = {}
+    extraData.message=$('#1357270616').val()
+    extraData.leavetype=$('input[name="vacationtype"]:checked').val()
+    {
+        /* Parsing input date id=1989254035 */
+        var dateField = $("#1989254035_date").val()
+        var timeField = $("#1989254035_time").val()
+        let d = new Date(dateField)
+        if (!isNaN(d.getTime())) {
+            extraData["entry.1989254035_year"] = d.getFullYear()
+            extraData["entry.1989254035_month"] = d.getMonth() + 1
+            extraData["entry.1989254035_day"] = d.getUTCDate()
+        }
+        if (timeField && timeField.split(':').length >= 2) {
+            let values = timeField.split(':')
+            extraData["entry.1989254035_hour"] = values[0]
+            extraData["entry.1989254035_minute"] = values[1]
+        }
+    }
+    {
+        /* Parsing input date id=1403025287 */
+        var dateField = $("#1403025287_date").val()
+        var timeField = $("#1403025287_time").val()
+        let d = new Date(dateField)
+        if (!isNaN(d.getTime())) {
+            extraData["entry.1403025287_year"] = d.getFullYear()
+            extraData["entry.1403025287_month"] = d.getMonth() + 1
+            extraData["entry.1403025287_day"] = d.getUTCDate()
+        }
+        if (timeField && timeField.split(':').length >= 2) {
+            let values = timeField.split(':')
+            extraData["entry.1403025287_hour"] = values[0]
+            extraData["entry.1403025287_minute"] = values[1]
+        }
+    }
+    $('#bootstrapForm').ajaxSubmit({
+        data: extraData,
+        type: 'POST',
+        url:'/applyleave',
+        success:function(data)
+        {
+          alert("done");
+        },
+          // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+        error: function () {
+            // Submit of form should be successful but JSONP callback will fail because Google Forms
+            // does not support it, so this is handled as a failure.
+            alert('Form Submitted. Thanks.')
+            // You can also redirect the user to a custom thank-you page:
+            // window.location = 'http://www.mydomain.com/thankyoupage.html'
+        }
+    })
+})
+</script>
+</body>
+</html>

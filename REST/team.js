@@ -4,6 +4,7 @@ const authUser = require("../models/authUser");
 const teams = require("../models/team");
 const notify = require("../models/notify");
 const profile = require("../models/profilemodel");
+const leave = require("../models/leavemodel");
 const photo = require("../models/photo")
 const apigen = require('uuid-apikey');
 var bodyParser = require('body-parser')
@@ -139,6 +140,31 @@ routes.get('/rest/:id/delete', urlencodedParser, function (req, res) {
         }
     })
 })
-
-
+routes.post('/applyleave',urlencodedParser,async(req,res,next)=>{
+var newleave=leave()
+newleave.employeeid=req.session.userid;
+newleave._id=random.int(200, 624233232);
+newleave.leavetype=req.body.leavetype;
+newleave.message=req.body.message;
+newleave.startdate=req.body.startdate;
+newleave.enddate=req.body.enddate;
+newleave.status=0
+var employerid=await teams.findOne({employeeid:req.session.userid},{ employerid: 1, _id: 0 })
+newleave.employerid=employerid.employerid;
+if(employerid!=null)
+{
+await newleave.save()
+var newnotify=notify();
+newnotify._id=random.int(200, 624233232);
+newnotify.userid=req.session.userid
+newnotify.message="Leave Request Submitted: "+req.body.leavetype
+await newnotify.save()
+console.log(employerid)
+res.send({status:'1'})
+}
+else
+{
+    res.send({status:'0'})
+}
+})
 module.exports = routes
