@@ -3,6 +3,7 @@ const routes=express.Router()
 const authUser=require('../models/authUser')
 const notify=require('../models/notify')
 var bodyParser = require('body-parser')
+var random = require('random')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 routes.get(['/dashboard','/onboarding','/profile','/manage','/teams','/addtask'],(req,res,next)=>
@@ -32,10 +33,7 @@ routes.get('/apply-leave',(req,res,next)=>
    res.render(appRoot+'/html/leaveform.ejs',{'username':'sathish'}) 
 })
 
-routes.get('/leave-approve',(req,res,next)=>
-{
-   res.render(appRoot+'/html/leave-approve.ejs',{'username':'sathish'}) 
-})
+
 
 
 
@@ -114,4 +112,36 @@ notify.deleteOne({_id:notificationid},(err,data)=>{
     }
 })
 });
+
+routes.get("/addaddress",urlencodedParser,(req,res,next)=>
+{
+    res.render(appRoot+'/html/addcontact.ejs')   
+})
+
+routes.post("/addaddress",urlencodedParser,(req,res,next)=>
+{
+    var addressbook=require('../models/addressbook')
+    var newaddress=addressbook()
+    newaddress._id=random.int(200, 624233232);
+    newaddress.name=req.body.name
+    newaddress.email=req.body.email
+    newaddress.phone=req.body.phone
+    newaddress.city=req.body.city
+    newaddress.state=req.body.state
+    newaddress.country=req.body.country
+    newaddress.organization=req.body.organization
+    newaddress.jobProfile=req.body.jobProfile
+    newaddress.additionalInfo="nil"
+    console.log(newaddress)
+    newaddress.save((err,data)=>{
+        if(err)
+        {
+            res.send({status:'0'})
+        }
+        else
+        {
+            res.render(appRoot+'/html/addcontact.ejs')   
+        }
+    })
+})
 module.exports=routes;

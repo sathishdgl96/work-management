@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/css/addressbook.css" type="text/css">
+
+<div class="container">  
+    <form id="contact" action="addaddress" method="post">
+      <h3>Add Address Book</h3>
+      <h4>Add you contact into db</h4>
+      <fieldset>
+        <input placeholder="Your name" name="name" id="name" type="text" tabindex="1" required autofocus>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your Email Address" name="email" id="email" type="email" tabindex="2" required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your Phone Number (optional)" name="phone" id="phone" type="tel" tabindex="3" required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your city.." name="city" id="city" type="text" tabindex="3" required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your state.." name="state" id="state" type="text" tabindex="3" required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your Country.." name="country" id="country" type="text" tabindex="3" required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Organization" name="organization" id="organization" type="text" tabindex="3" required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Job Profile" name="jobProfile" id="jobProfile" type="text" tabindex="3" required>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required>
+      </fieldset>
+  
+      <fieldset>
+        <button name="submit" type="submit" id="contact-submit" onclick="alert('data submitted')" data-submit="...Sending">Submit</button>
+      </fieldset>
+     
+    </form>
+  </div>

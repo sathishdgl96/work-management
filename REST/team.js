@@ -167,4 +167,50 @@ else
     res.send({status:'0'})
 }
 })
+
+routes.get('/leave-approve',(req,res,next)=>
+{
+   leave.find({employerid:req.session.userid,status:0},(err,data)=>{
+       if(data)
+       {
+        
+           console.log(data)
+        res.render(appRoot+'/html/leave-approve.ejs',{'data':data}) 
+       }
+       else
+       {
+        res.render(appRoot+'/html/leave-approve.ejs')
+       }
+   }) 
+})
+
+routes.get('/accept-leave/:id',(req,res,next)=>
+{
+    let id= req.params.id
+    console.log(id)
+    leave.findOneAndUpdate({_id:id}, {$set:{status:1}}, {new: true},(err,data)=>{
+        if(err)
+        {
+            console.log(err)
+            res.redirect('/manage')
+        }
+        else
+        {
+            var newnotify=notify();
+        newnotify._id=random.int(200, 624233232);
+        newnotify.userid=data.employeeid
+        newnotify.message="Congratulations ! , Your Leave Request Approved : "+data.leavetype
+        newnotify.save((err,data)=>
+        {
+            if(err)
+            {
+                console.log("error in creating notification")
+            }
+        })
+            res.redirect('/manage')
+        }
+    })
+   
+})
+
 module.exports = routes

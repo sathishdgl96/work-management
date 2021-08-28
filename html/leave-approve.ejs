@@ -3,7 +3,7 @@
     <h3>Leave Approve</h3>
     <table style="width:100%">
       <tr>
-        <th>S.No</th>
+        <th>Emp. Id</th>
         <th>Leave Type</th>
         <th>From Date</th>
         <th>To Date</th> 
@@ -13,19 +13,20 @@
         <th>Update</th>
       </tr>
       <tr>
-      <td>1</td>
-        <td>Medical</td>
-        <td>1/2/2017</td>
-        <td>1/3/2017</td>
+        <% for(var i=0; i < data.length; i++) { %>
+      <td><%=data[i].employeeid%></td>
+        <td><%=data[i].leavetype%></td>
+        <td><%=data[i].startdate.toLocaleDateString()%></td>
+        <td><%=data[i].enddate.toLocaleDateString()%></td>
         <td>1</td>
-        
         <td><select>
-          <option value="Pending">Pending</option>
-          <option value="Accept">Accept</option>
-          <option value="Reject">Reject</option>
-          </select></td><td><input type="text" placeholder="write your comments and update" class="form-control" /></td>
-        <td> <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalUpdate">Accept</button><button type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#myModalDelete">Reject</button></td>
+          <option value="0">Pending</option>
+          <option value="1">Accept</option>
+          <option value="2">Reject</option>
+          </select></td><td><input type="text" placeholder="write your comments and update" value="<%=data[i].message%>" class="form-control" /></td>
+        <td> <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#myModalUpdate"><a href="/accept-leave/<%=data[i]._id%>">Accept</a></button><button type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#myModalDelete">Reject</button></td>
       </tr>
+      <% } %>  
     </table>
   </div>
   
